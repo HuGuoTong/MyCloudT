@@ -1,0 +1,13 @@
+server:
+  port: 8010
+
+eureka:
+  instance:
+    hostname: Eureka8010.com #eureka服务端的实例名称
+  client:
+    register-with-eureka: false #不注册自己
+    fetch-registry: true #代表是服务端不需要去检索服务
+    service-url:
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      #集群的情况下，服务端之间要互相注册，指向对方
+      defaultZone: http://Eureka8011.com:8011/eureka
