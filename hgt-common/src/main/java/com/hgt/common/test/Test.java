@@ -58,12 +58,30 @@ public class Test {
 //        long l = time1.getTime() -(time3.getTime() -time2.getTime());
 //        Date date1 = new Date(l);//上一次任务执行时间
 //        sdf.format(null);
-        MyWebSocketClient client = new MyWebSocketClient(new URI("ws://localhost:8081/websocketT/first"));
-        client.connect();
-        while(!client.getReadyState().equals(WebSocketClient.READYSTATE.OPEN)){
-            System.out.println("连接中....");
-            Thread.sleep(1000);
+//        MyWebSocketClient client = new MyWebSocketClient(new URI("ws://localhost:8081/websocketT/first"));
+//        client.connect();
+//        while(!client.getReadyState().equals(WebSocketClient.READYSTATE.OPEN)){
+//            System.out.println("连接中....");
+//            Thread.sleep(1000);
+//        }
+//        client.send("我先发条消息");
+
+//        List<User> u1 = list.stream().filter(e->"R".equals(e.getName())).collect(Collectors.toList());
+//        System.out.println(list.size());
+//        try {
+//            Integer a = null;
+//            System.out.println(1==a);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            System.out.println(e.getMessage());
+//            System.out.println(e.toString());
+//        }
+        for(User use:list){
+            User user = new User();
+            user.setName("Q");
+            user.setFlag("33");
+            list.add(user);
         }
-        client.send("我先发条消息");
+
     }
 }
