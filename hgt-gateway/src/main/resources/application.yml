@@ -1,0 +1,55 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: HGT-PAY
+          #uri: http://localhost:8084
+          uri: lb://HGT-PAY
+          predicates:
+            - Path=/hgt-pay/**
+          filters:
+            - StripPrefix=1
+
+        - id: HGT-ORDER
+            #uri: http://localhost:8084
+            uri: lb://HGT-ORDER
+            predicates:
+              - Path=/hgt-order/**
+            filters:
+              - StripPrefix=1
+
+        - id: HGT-PRODUCT
+            #uri: http://localhost:8084
+            uri: lb://HGT-PRODUCT
+            predicates:
+              - Path=/hgt-product/**
+            filters:
+              - StripPrefix=1
+
+        - id: HGT-USER
+            #uri: http://localhost:8084
+            uri: lb://HGT-USER
+            predicates:
+              - Path=/hgt-user/**
+            filters:
+              - StripPrefix=1
+
+eureka:
+  instance:
+  prefer-ip-address: true
+  instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    register-with-eureka: true #是否将自己注册到eureka
+    #是否从eurekaServer抓取已有的注册信息，默认true 单节点无所谓 集群必须设置为true
+    #才能配合ribbon使用负载均衡
+    fetch-registry: true
+    service-url:
+      defaultZone: http://Eureka8010.com:8010/eureka,http://Eureka8011.com:8011/eureka

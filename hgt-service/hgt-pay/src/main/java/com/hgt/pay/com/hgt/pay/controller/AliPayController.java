@@ -22,4 +22,10 @@ public class AliPayController {
     public String createPayOrder(){
         return "调用的pay:"+servePort;
     }
+
+    @GetMapping("/testAnd3S")
+    public String testAnd3S() throws Exception{
+        Thread.sleep(3000L);
+        return "超时调用的pay:"+servePort;
+    }
 }

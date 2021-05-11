@@ -10,6 +10,7 @@
         <module name="hgt-bean" />
         <module name="hgt-eureka01" />
         <module name="hgt-eureka02" />
+        <module name="hgt-gateway" />
         <module name="hgt-order" />
         <module name="hgt-pay" />
         <module name="hgt-pay8085" />

@@ -1,21 +1,21 @@
-package com.hgt.order;
+package com.hgt.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @Author: HGT
  * @Description: ${description}
- * @Date: 2021/4/24 15:35
+ * @Date: 2021/5/10 17:01
  * @Version: 1.0
  */
-@EnableEurekaClient
 @SpringBootApplication
-@EnableFeignClients
-public class OrderApplication {
+@EnableEurekaClient
+@EnableDiscoveryClient
+public class GateWayApplication {
     public static void main(String[] args) {
-        SpringApplication.run(OrderApplication.class,args);
+        SpringApplication.run(GateWayApplication.class,args);
     }
 }

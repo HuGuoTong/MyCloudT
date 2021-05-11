@@ -28,3 +28,17 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://Eureka8010.com:8010/eureka,http://Eureka8011.com:8011/eureka
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: FULL
+        #针对某个级别设置输出级别(设置局部的优先级别是最高的)
+      Book-service:
+        loggerLevel: FULL
+  hystrix:
+    # feign熔断器开关
+    enabled: true
+
+

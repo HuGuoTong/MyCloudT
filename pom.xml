@@ -12,6 +12,7 @@
         <module>hgt-service</module>
         <module>hgt-eureka01</module>
         <module>hgt-eureka02</module>
+        <module>hgt-gateway</module>
     </modules>
 
     <packaging>pom</packaging>
