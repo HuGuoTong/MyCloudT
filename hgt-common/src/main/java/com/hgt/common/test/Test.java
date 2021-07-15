@@ -1,17 +1,8 @@
 package com.hgt.common.test;
 
-import org.java_websocket.WebSocket;
-import org.java_websocket.client.WebSocketClient;
-import org.springframework.scheduling.support.CronSequenceGenerator;
-import org.springframework.util.Assert;
-
-import java.net.URI;
-import java.text.SimpleDateFormat;
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @Author: HGT
@@ -76,12 +67,15 @@ public class Test {
 //            System.out.println(e.getMessage());
 //            System.out.println(e.toString());
 //        }
-        for(User use:list){
-            User user = new User();
-            user.setName("Q");
-            user.setFlag("33");
-            list.add(user);
-        }
+//        for(User use:list){
+//            User user = new User();
+//            user.setName("Q");
+//            user.setFlag("33");
+//            list.add(user);
+//        }
+        BigDecimal b = new BigDecimal(1);
+        b = b.negate();
+        System.out.println(b.toPlainString());
 
     }
 }
