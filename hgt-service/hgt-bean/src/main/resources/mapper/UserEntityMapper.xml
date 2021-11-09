@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hgt.bean.mapper.UserEntityMapper">
+    <resultMap id="UserResultMap" type="com.hgt.bean.entity.UserEntity">
+        <id column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="pay_password" property="payPassword"/>
+        <result column="phone_number" property="phoneNumber"/>
+        <result column="customer_id" property="customerId"/>
+        <result column="country_code" property="countryCode"/>
+        <result column="head_portrait" property="headPortrait"/>
+        <result column="email" property="email"/>
+        <result column="gender" property="gender"/>
+        <result column="birthday" property="birthday"/>
+        <result column="wid_phone_number" property="widPhoneNumber"/>
+        <result column="wid_wallet_address" property="widWalletAddress"/>
+        <result column="cac_wallet_address" property="cacWalletAddress"/>
+        <result column="wid_value" property="widValue"/>
+        <result column="wac_value" property="wacValue"/>
+        <result column="cac_value" property="cacValue"/>
+        <result column="alipay_account" property="alipayAccount"/>
+        <result column="alipay_account_name" property="alipayAccountName"/>
+        <result column="app_openid" property="appOpenid" />
+        <result column="mini_program_open_id" property="miniProgramOpenId" />
+        <result column="wechat_union_id" property="wechatUnionId" />
+        <result column="locked" property="locked"/>
+        <result column="deleted_flag" property="deletedFlag"/>
+        <result column="recomd_phone_number" property="recomdPhoneNumber"/>
+        <result column="recommend_code" property="recommendCode"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <sql id="BaseSQL">
+        select user_id,
+               user_name,
+               nick_name,
+               pay_password,
+               phone_number,
+               customer_id,
+               country_code,
+               head_portrait,
+               email,
+               gender,
+               birthday,
+               wid_phone_number,
+               wid_wallet_address,
+               cac_wallet_address,
+               wid_value,
+               wac_value,
+               cac_value,
+               alipay_account,
+               alipay_account_name,
+               app_openid,
+               mini_program_open_id,
+               wechat_union_id,
+               locked,
+               deleted_flag,
+               recomd_phone_number,
+               recommend_code,
+               created_by,
+               created_time,
+               update_by,
+               update_time
+        from wm_user
+    </sql>
+
+    <update id="updateUser">
+        update wm_user
+        set update_by = #{userId}
+        ,update_time = now()
+        <if test="email != null">
+            ,email = #{email}
+        </if>
+        <if test="headPortrait != null">
+            ,head_portrait = #{headPortrait}
+        </if>
+        <if test="nickName != null">
+            ,nick_name = #{nickName}
+        </if>
+        <if test="birthday != null">
+            ,birthday = #{birthday}
+        </if>
+        <if test="gender != null">
+            ,gender = #{gender}
+        </if>
+        where user_id = #{userId}
+    </update>
+    <update id="updateUserAlipayAccount">
+        update wm_user
+        set update_by = #{uid}
+        ,update_time = now()
+        ,alipay_account = #{alipayAccount}
+        ,alipay_account_name = #{alipayAccountName}
+        where user_id = #{uid}
+    </update>
+
+    <select id="findByUid" resultMap="UserResultMap">
+        <include refid="BaseSQL"></include>
+        where user_id = #{uid}
+    </select>
+    <select id="findByMobile" resultMap="UserResultMap">
+        <include refid="BaseSQL"></include>
+        where phone_number = #{mobile} and country_code = #{countryCode}
+    </select>
+    <select id="findByUsername" resultMap="UserResultMap">
+        <include refid="BaseSQL"></include>
+        where user_name = #{username}
+    </select>
+
+    <select id="selectUserInfoByCode" resultMap="UserResultMap">
+        <include refid="BaseSQL"></include>
+        where user_id = (select wri.user_id from wm_recommended_info wri where wri.recomd_code = #{recomdCode})
+    </select>
+
+    <select id="selectByCustomerId" resultMap="UserResultMap">
+        <include refid="BaseSQL"></include>
+        where customer_id = #{customerId}
+    </select>
+
+    <select id="selectRecomderByPhoneNumber" resultMap="UserResultMap">
+        SELECT
+        rem.user_id,
+        rem.user_name,
+        rem.nick_name,
+        rem.head_portrait,
+        rem.phone_number,
+        rem.customer_id,
+        rem.wid_phone_number,
+        rem.wid_wallet_address,
+        rem.cac_wallet_address,
+        rem.wid_value,
+        rem.wac_value,
+        rem.cac_value,
+        rem.alipay_account,
+        rem.alipay_account_name
+        FROM wm_recommended_info wri
+        JOIN wm_user rem ON rem.user_id = wri.user_id
+        WHERE wri.recomd_phone_number = #{recomdPhoneNumber}
+        AND wri.status = 1
+    </select>
+
+    <select id="findUserByRecomd" resultMap="UserResultMap">
+        <include refid="BaseSQL"></include>
+        WHERE recomd_phone_number = #{phoneNumber}
+    </select>
+
+
+</mapper>

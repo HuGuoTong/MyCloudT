@@ -2,8 +2,8 @@ package com.hgt.common.test;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.hgt.common.utils.HttpUtils;
-import com.hgt.common.utils.MyBase64Utils;
+import com.hgt.common.utils.http.HttpUtils;
+import com.hgt.common.utils.http.MyBase64Utils;
 import org.apache.http.HttpResponse;
 
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.hgt.common.utils;
+package com.hgt.common.utils.http;
 
 import org.bouncycastle.util.encoders.Base64;
 

@@ -1,4 +1,4 @@
-package com.hgt.common.utils;
+package com.hgt.common.utils.http;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;

@@ -2,7 +2,6 @@ package com.hgt.order.controller;
 
 import com.hgt.order.feign.AliPayControllerFeign;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,9 +26,6 @@ public class OrderController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${nimabi}")
-    private String testConfig;
-
     @GetMapping("/submitOrder")
     public String submitOrder(){
         String forEntity = aliPayControllerFeign.createPayOrder();
@@ -48,9 +44,5 @@ public class OrderController {
         return response.getBody();
     }
 
-    @GetMapping("/tstConfig")
-    public String tstConfig(){
-        return "???"+testConfig;
-    }
 
 }

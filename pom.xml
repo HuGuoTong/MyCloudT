@@ -13,6 +13,7 @@
         <module>hgt-eureka01</module>
         <module>hgt-eureka02</module>
         <module>hgt-gateway</module>
+        <module>hgt-job</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -50,7 +51,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2020.0.2</version>
+                <version>Finchley.SR3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
